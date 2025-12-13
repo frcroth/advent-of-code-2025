@@ -1,4 +1,5 @@
 from functools import reduce
+import os
 
 def split_line(line:str):
     line = line.replace("  ", " ")
@@ -63,12 +64,11 @@ def part_2(problems):
 if __name__ == "__main__":
     example = parse("example.txt")
     assert 4277556 == part_1(example)
-    
-    input = parse("input.txt", 4)
-    print(part_1(input))
-    
     ceph_example = parse_cephalod_numbers("example.txt")
     assert 3263827 == part_2(ceph_example)
     
-    ceph_input= parse_cephalod_numbers("input.txt", 4)
-    print(part_2(ceph_input))
+    if not os.getenv("SKIP_INPUT"):
+        input = parse("input.txt", 4)
+        print(part_1(input))
+        ceph_input= parse_cephalod_numbers("input.txt", 4)
+        print(part_2(ceph_input))

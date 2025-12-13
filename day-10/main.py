@@ -5,6 +5,7 @@
 # ///
 
 
+import os
 from z3 import *
 
 def parse_machine(line):
@@ -109,12 +110,13 @@ if __name__ == "__main__":
     
     assert 7 == part_1(example_machines)
     
-    input_machines = parse_input("input.txt")
-    
-    print(part_1(input_machines))
-    
     assert 33 == part_2(example_machines)
     
-    print(part_2(input_machines))
+    if not os.getenv("SKIP_INPUT"):
+        input_machines = parse_input("input.txt")
+        
+        print(part_1(input_machines))
+        
+        print(part_2(input_machines))
     
     

@@ -1,4 +1,5 @@
 import re
+import os
 
 regex = r"([LR])(\d+)"
 
@@ -64,8 +65,8 @@ def solve(input):
 
 if __name__ == "__main__":
     example = read_example()
-    print(solve(example))
     assert solve(example) == (3, 6)
 
-    input = read_input()
-    print(solve(input))
+    if not os.getenv("SKIP_INPUT"):
+        input = read_input()
+        print(solve(input))

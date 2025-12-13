@@ -1,3 +1,6 @@
+import os
+
+
 def parse_input(path):
     with open(path) as f:
         all = f.read()
@@ -78,10 +81,9 @@ def part_2(input):
 if __name__ == "__main__":
     example = parse_input("example.txt")
     assert 3 == part_1(example)
-    
-    input = parse_input("input.txt")
-    print(part_1(input))
-    
     assert 14 == part_2(example)
     
-    print(part_2(input))
+    if not os.getenv("SKIP_INPUT"):
+        input = parse_input("input.txt")
+        print(part_1(input))
+        print(part_2(input))

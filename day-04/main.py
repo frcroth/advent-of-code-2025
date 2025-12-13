@@ -1,4 +1,7 @@
 
+import os
+
+
 def get_example():
     with open("example.txt") as f:
         example = f.readlines()
@@ -69,6 +72,6 @@ def part_2(input):
 if __name__ == "__main__":
     assert 13 == part_1(get_example())
     assert 43 == part_2(get_example())
-    
-    print(part_1(get_input()))
-    print(part_2(get_input()))
+    if not os.getenv("SKIP_INPUT"):
+        print(part_1(get_input()))
+        print(part_2(get_input()))

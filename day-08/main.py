@@ -1,4 +1,5 @@
 from collections import Counter
+import os
 
 def parse(path):
     with open(path) as f:
@@ -97,12 +98,12 @@ def part_2(coords):
 if __name__ == "__main__":
     example = parse("example.txt")
     assert 40 == part_1(example)
-    
-    input = parse("input.txt")
-    print(part_1(input, 1000))
-    
     assert 25272 == part_2(example)
-    print(part_2(input))
+    
+    if not os.getenv("SKIP_INPUT"):
+        input = parse("input.txt")
+        print(part_1(input, 1000))
+        print(part_2(input))
     
     
     

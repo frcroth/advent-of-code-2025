@@ -1,3 +1,6 @@
+import os
+
+
 def parse(file):
     
     with open(file) as f:
@@ -48,6 +51,7 @@ if __name__ == "__main__":
     example = 2
     assert 2 == example
     
-    input_parsed = parse("input.txt")
-    print(part_1(input_parsed))
+    if not os.getenv("SKIP_INPUT"):
+        input_parsed = parse("input.txt")
+        print(part_1(input_parsed))
     

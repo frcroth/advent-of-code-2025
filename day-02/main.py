@@ -1,3 +1,5 @@
+import os
+
 def read_example():
     with open("example.txt") as f:
         return f.readlines()[0].split(",")
@@ -50,6 +52,8 @@ def part_2(input):
 if __name__ == "__main__":
     example = read_example()
     assert 1227775532 == part_1(example)
-    print(part_1(read_input()))
     assert 4174379265 == part_2(example)
-    print(part_2(read_input()))
+    
+    if not os.getenv("SKIP_INPUT"):
+        print(part_1(read_input()))
+        print(part_2(read_input()))

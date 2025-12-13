@@ -1,3 +1,6 @@
+import os
+
+
 def read_input(path):
     with open(path) as f:
         return f.readlines()
@@ -55,6 +58,7 @@ if __name__ == "__main__":
     assert 21 == part_1(example)
     assert 40 == part_2(example)
     
-    input = read_input("input.txt")
-    print(part_1(input))
-    print(part_2(input))
+    if not os.getenv("SKIP_INPUT"):
+        input = read_input("input.txt")
+        print(part_1(input))
+        print(part_2(input))

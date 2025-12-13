@@ -4,6 +4,7 @@
 # ]
 # ///
 
+import os
 from shapely import Polygon, box
 
 def parse(path):
@@ -39,11 +40,11 @@ tile_b[1]) + 1)
 
 if __name__ == "__main__":
     example_tiles = parse("example.txt")
-    input_tiles = parse("input.txt")
     
     assert 50 == brute_force(example_tiles)
     assert 24 == part_2(example_tiles)
-    
-    print(brute_force(input_tiles))
-    print(part_2(input_tiles))
+    if not os.getenv("SKIP_INPUT"):
+        input_tiles = parse("input.txt")
+        print(brute_force(input_tiles))
+        print(part_2(input_tiles))
 

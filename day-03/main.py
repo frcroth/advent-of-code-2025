@@ -1,3 +1,6 @@
+import os
+
+
 def read_example():
     with open("example.txt") as f:
         return [s.strip() for s in f.readlines()]
@@ -43,9 +46,10 @@ def part_2(input):
 
 if __name__ == "__main__":
     example = read_example()
-    input = read_input()
     assert 357 == part_1(example)
     assert 3121910778619 == part_2(example)
 
-    print(part_1(input))
-    print(part_2(input))
+    if not os.getenv("SKIP_INPUT"):
+        input = read_input()
+        print(part_1(input))
+        print(part_2(input))

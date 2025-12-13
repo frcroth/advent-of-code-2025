@@ -1,5 +1,6 @@
 
 from functools import cache
+import os
 
 
 def parse_graph(path):
@@ -98,6 +99,7 @@ if __name__ == "__main__":
     example_2_input = parse_graph("example_2.txt")
     assert 2 == part_2(example_2_input)
     
-    input = parse_graph("input.txt")
-    print(part_1(input))
-    print(part_2(input))
+    if not os.getenv("SKIP_INPUT"):
+        input = parse_graph("input.txt")
+        print(part_1(input))
+        print(part_2(input))
