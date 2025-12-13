@@ -4,7 +4,8 @@ import os
 def read_example():
     with open("example.txt") as f:
         return [s.strip() for s in f.readlines()]
-    
+
+
 def read_input():
     with open("input.txt") as f:
         return [s.strip() for s in f.readlines()]
@@ -15,7 +16,7 @@ def get_bank_val(bank):
     relevant_nums = nums[:-1]
     m = max(relevant_nums)
     first_occurrence = nums.index(m)
-    next_highest = max(nums[first_occurrence+1:])
+    next_highest = max(nums[first_occurrence + 1 :])
     full = int(str(m) + str(next_highest))
     return full
 
@@ -28,12 +29,12 @@ def get_bank_val_part_2(bank):
     nums = [int(a) for a in bank]
     full_num = []
     search_start_index = 0
-    for k in range(12,0,-1):
+    for k in range(12, 0, -1):
         if k == 1:
             remaining = nums[search_start_index:]
             full_num.append(max(remaining))
             break
-        relevant_nums = nums[search_start_index:-(k-1)]
+        relevant_nums = nums[search_start_index : -(k - 1)]
         m = max(relevant_nums)
         full_num.append(m)
         # Now search only after m
@@ -41,8 +42,10 @@ def get_bank_val_part_2(bank):
     full = int("".join([str(a) for a in full_num]))
     return full
 
+
 def part_2(input):
     return sum([get_bank_val_part_2(bank) for bank in input])
+
 
 if __name__ == "__main__":
     example = read_example()

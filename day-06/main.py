@@ -1,11 +1,13 @@
 from functools import reduce
 import os
 
-def split_line(line:str):
+
+def split_line(line: str):
     line = line.replace("  ", " ")
     line = line.replace("  ", " ")
     line = line.replace("  ", " ")
     return line.strip().split(" ")
+
 
 def parse(path, numberlines=3):
     with open(path) as f:
@@ -16,27 +18,28 @@ def parse(path, numberlines=3):
     operations = split_line(operations)
     return numbers, operations
 
+
 def part_1(input):
     numbers = input[0]
     operations = input[1]
-    
+
     total = 0
     for i, op in enumerate(operations):
         if op == "+":
             total += sum(numbers[i])
         if op == "*":
-            total += reduce(lambda x,y : x * y,numbers[i], 1)
+            total += reduce(lambda x, y: x * y, numbers[i], 1)
     return total
 
-def parse_cephalod_numbers(path, numberlines = 3):
-    
+
+def parse_cephalod_numbers(path, numberlines=3):
     with open(path) as f:
         lines = f.readlines()
-        
+
     operations_line = lines[numberlines]
     problems = []
     nums = []
-    
+
     for k in range(len(operations_line)):
         i = len(operations_line) - 1 - k
         digits = ""
@@ -49,7 +52,8 @@ def parse_cephalod_numbers(path, numberlines = 3):
             problems.append((nums, operations_line[i]))
             nums = []
     return problems
-    
+
+
 def part_2(problems):
     total = 0
     for problem in problems:
@@ -58,17 +62,18 @@ def part_2(problems):
         if op == "+":
             total += sum(numbers)
         if op == "*":
-            total += reduce(lambda x,y : x * y,numbers, 1)
+            total += reduce(lambda x, y: x * y, numbers, 1)
     return total
+
 
 if __name__ == "__main__":
     example = parse("example.txt")
     assert 4277556 == part_1(example)
     ceph_example = parse_cephalod_numbers("example.txt")
     assert 3263827 == part_2(ceph_example)
-    
+
     if not os.getenv("SKIP_INPUT"):
         input = parse("input.txt", 4)
         print(part_1(input))
-        ceph_input= parse_cephalod_numbers("input.txt", 4)
+        ceph_input = parse_cephalod_numbers("input.txt", 4)
         print(part_2(ceph_input))

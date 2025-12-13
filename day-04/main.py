@@ -1,4 +1,3 @@
-
 import os
 
 
@@ -8,11 +7,13 @@ def get_example():
         example = [list(a.strip()) for a in example]
     return example
 
+
 def get_input():
     with open("input.txt") as f:
         i = f.readlines()
         i = [list(a.strip()) for a in i]
     return i
+
 
 def safe_lookup(x, y, matrix):
     if y < 0 or x < 0 or y >= len(matrix) or x >= len(matrix[0]):
@@ -32,6 +33,7 @@ def get_adjacents(x, y, matrix):
         safe_lookup(x + 1, y + 1, matrix),
     ]
 
+
 def part_1(input):
     accessible = 0
     for y in range(len(input)):
@@ -44,6 +46,7 @@ def part_1(input):
                 accessible += 1
 
     return accessible
+
 
 def get_all_accessible(matrix):
     accessibles = []
@@ -58,6 +61,7 @@ def get_all_accessible(matrix):
 
     return accessibles
 
+
 def part_2(input):
     total_taken = 0
     while True:
@@ -68,6 +72,7 @@ def part_2(input):
         for a in accessibles:
             input[a[1]][a[0]] = "."
     return total_taken
+
 
 if __name__ == "__main__":
     assert 13 == part_1(get_example())

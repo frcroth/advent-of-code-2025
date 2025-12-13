@@ -4,7 +4,8 @@ import os
 def read_input(path):
     with open(path) as f:
         return f.readlines()
-    
+
+
 def part_1(input: list[str]):
     # First line is start
     start_index = input[0].index("S")
@@ -20,10 +21,11 @@ def part_1(input: list[str]):
             elif l[stream] == "^":
                 # Split
                 splits += 1
-                next_streams.append(stream-1)
-                next_streams.append(stream+1)
+                next_streams.append(stream - 1)
+                next_streams.append(stream + 1)
         streams = list(set(next_streams))
     return splits
+
 
 def part_2(input: list[str]):
     # First line is start
@@ -40,24 +42,24 @@ def part_2(input: list[str]):
             if l[stream] == ".":
                 # Continue moving down
                 next_streams.append(stream)
-                particles[step][stream] += particles[step-1][stream]
+                particles[step][stream] += particles[step - 1][stream]
             elif l[stream] == "^":
                 # Split
                 splits += 1
-                next_streams.append(stream-1)
-                next_streams.append(stream+1)
-                
-                
-                particles[step][stream-1] += particles[step-1][stream]
-                particles[step][stream+1] += particles[step-1][stream]
+                next_streams.append(stream - 1)
+                next_streams.append(stream + 1)
+
+                particles[step][stream - 1] += particles[step - 1][stream]
+                particles[step][stream + 1] += particles[step - 1][stream]
         streams = list(set(next_streams))
     return sum(particles[-1])
-    
+
+
 if __name__ == "__main__":
     example = read_input("example.txt")
     assert 21 == part_1(example)
     assert 40 == part_2(example)
-    
+
     if not os.getenv("SKIP_INPUT"):
         input = read_input("input.txt")
         print(part_1(input))
